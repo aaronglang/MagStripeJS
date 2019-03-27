@@ -1,14 +1,14 @@
 {
   "name": "mag-stripe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Magnetic stripe parser",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/aaronglang/MagStripeJS.git"
+    "type": "git",
+    "url": "https://github.com/aaronglang/MagStripeJS.git"
   },
   "author": "Aaron Langley",
   "license": "MIT",
