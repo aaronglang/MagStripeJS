@@ -1,0 +1,14 @@
+{
+  "name": "credit_card",
+  "version": "1.0.0",
+  "description": "Credit card parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Aaron Langley",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^24.5.0"
+  }
+}
