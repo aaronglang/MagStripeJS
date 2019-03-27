@@ -6,13 +6,14 @@ Magnetic stripe parser for credit-cards and state-issued identification cards
 
 **If you do not have a reader, feel free to use the sample mag-stripe data located in /tests/test_data.json**
 
-### Usage
+### Getting Started
 ---
 
 Install package `npm install --save mag-stripe`
 
-#### Code Sample:
+#### Usage
 
+index.js:
 ```
 const parser = require('mag-stripe');
 const id_data = parser.test_data.id;
@@ -20,13 +21,13 @@ const credit_card_data = parser.test_data.credit_card;
 
 function get_id_data (id_data) {
     let data = parser.parse_id(id_data);
-    console.log(id_data);
+    // do something with ID info (check age?)
     return data;
 }
 
 function get_credit_card_data (credit_card_data) {
-    let data = parser.parse_id(credit_card_data);
-    console.log(credit_card_data);
+    let data = parser.parse_card(credit_card_data);
+    // do something with credit card info
     return data;
 }
 ```
@@ -34,11 +35,11 @@ function get_credit_card_data (credit_card_data) {
 ### CLI Usage
 ---
 
-run:
+index.js:
 ```
 const parser = require('mag-stripe');
 parser.cli();
 ```
-This method creates a readline stream - plug in your card reader and swipe!
+Run: `node index.js` this method will create a readline stream - plug in your card reader and swipe!
 
 Happy hacking!
