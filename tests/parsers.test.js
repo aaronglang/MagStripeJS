@@ -1,8 +1,9 @@
 const parser = require('../src/parsers');
-const credit_str = '%B1234567812345678^DOE/JOHN ^2311201107631100000000580000000?;1234567812345678=231120110763580?';
-const credit_str_exp = '%B1234567812345678^DOE/JOHN ^1811201107631100000000580000000?;1234567812345678=181120110763580?';
-const id_str = '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE^1234 MAPLE DR^?;123456781234567=211219931223?#!!12345    C     M507190BRNBRN D69820170124      EV/.R\\!?,2(?';
-const id_str_exp = '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE^1234 MAPLE DR^?;123456781234567=181219931223?#!!12345    C     M507190BRNBRN D69820170124      EV/.R\\!?,2(?';
+const samples = require('./test_data');
+const credit_str = samples.credit_card;
+const credit_str_exp = samples.credit_card_expired;
+const id_str = samples.id;
+const id_str_exp = samples.id_expired;
 const bad_param_arr = ['%E?;E?', 'asdfasdfasdf12345', '', '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE', 1234567, true, false, '%B1234567812345678^DOE/JOHN ^2311201107631100000000580000'];
 
 test('should parse data from credit card mag stripe', () => {

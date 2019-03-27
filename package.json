@@ -1,7 +1,7 @@
 {
-  "name": "credit_card",
+  "name": "mag-stripe",
   "version": "1.0.0",
-  "description": "Credit card parser",
+  "description": "Magnetic stripe parser",
   "main": "index.js",
   "scripts": {
     "test": "jest"

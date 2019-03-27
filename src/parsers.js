@@ -1,4 +1,5 @@
 'use strict';
+const read_line = require('readline');
 
 const parse_card = (data) => {
     if(typeof data !== 'string') return null;
@@ -49,6 +50,22 @@ const parse_id = (str) => {
     };
 };
 
+const cli = () => {
+    const rl = read_line.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    rl.on('line', (input) => {
+        let stdout;
+        if(/%B\d{10,20}\^\w+/.test(input)) {
+            stdout = parse_card(input);
+        } else if(/%[a-z]+\^\w+/i.test(input)) {
+            stdout = parse_id(input);
+        }
+        console.table(stdout);
+    });
+};
+
 // todo: parse_pdf417 function for barcode
 
 const parse_string = (str) => {
@@ -93,5 +110,6 @@ module.exports = {
     date_diff_years,
     format_dates,
     parse_id,
-    parse_card
+    parse_card,
+    cli
 };
