@@ -18,10 +18,10 @@ const parse_card = (data) => {
                 obj.card_number = +x.trim();
             } else if (/^\d{4}/gi.test(x)) {
                 // check expiration
-                obj.exp_date = x.trim().match(/\d{2}/g).reverse().join('/');
+                obj.expiration_date = x.trim().match(/\d{2}/g).reverse().join('/');
                 let now = new Date();
-                let exp_date = new Date(+`20${obj.exp_date.substr(3,2)}`, +obj.exp_date.substr(0,2) - 1);
-                let expired = date_diff_days(exp_date, now);
+                let expiration_date = new Date(+`20${obj.expiration_date.substr(3,2)}`, +obj.expiration_date.substr(0,2) - 1);
+                let expired = date_diff_days(expiration_date, now);
                 obj.expired = !!(expired > 0);
             }
         });
@@ -48,6 +48,8 @@ const parse_id = (str) => {
         doe: data[1]
     };
 };
+
+// todo: parse_pdf417 function for barcode
 
 const parse_string = (str) => {
     let exp = /(?=[^])(\w+[$]\w+)|(\w+[$]\w+)(?<=[^])|(?<=;\d{1,20}=\d{4})\d{8}(?=[?])|(?<=;\d{1,20}=)\d{4}(?=\d{8}[?])/gi;

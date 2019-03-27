@@ -1,26 +1,26 @@
-const parser = require('../parsers');
-const credit_str = '%B1234567812345678^name/test ^2311201107631100000000580000000?;1234567812345678=231120110763580?';
-const credit_str_exp = '%B1234567812345678^name/test ^1811201107631100000000580000000?;1234567812345678=181120110763580?';
-const id_str = '%CAHUNTINGTN BC^NAME$TEST$MIDDLE^1234 MAPLE DR^?;123456781234567=211219931223?#!!12345    C     M507190BRNBRN D69820170124      EV/.R\\!?,2(?';
-const id_str_exp = '%CAHUNTINGTN BC^NAME$TEST$MIDDLE^1234 MAPLE DR^?;123456781234567=181219931223?#!!12345    C     M507190BRNBRN D69820170124      EV/.R\\!?,2(?';
-const bad_param_arr = ['%E?;E?', 'asdfasdfasdf12345', '', '%CAHUNTINGTN BC^NAME$TEST$MIDDLE', 1234567, true, false, '%B1234567812345678^NAME/TEST ^2311201107631100000000580000'];
+const parser = require('../src/parsers');
+const credit_str = '%B1234567812345678^DOE/JOHN ^2311201107631100000000580000000?;1234567812345678=231120110763580?';
+const credit_str_exp = '%B1234567812345678^DOE/JOHN ^1811201107631100000000580000000?;1234567812345678=181120110763580?';
+const id_str = '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE^1234 MAPLE DR^?;123456781234567=211219931223?#!!12345    C     M507190BRNBRN D69820170124      EV/.R\\!?,2(?';
+const id_str_exp = '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE^1234 MAPLE DR^?;123456781234567=181219931223?#!!12345    C     M507190BRNBRN D69820170124      EV/.R\\!?,2(?';
+const bad_param_arr = ['%E?;E?', 'asdfasdfasdf12345', '', '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE', 1234567, true, false, '%B1234567812345678^DOE/JOHN ^2311201107631100000000580000'];
 
 test('should parse data from credit card mag stripe', () => {
     expect(parser.parse_card(id_str)).toBeNull();
     expect(parser.parse_card(credit_str)).toEqual(
         {
             card_number: 1234567812345678,
-            first_name: 'test',
-            last_name: 'name',
-            exp_date: '11/23',
+            first_name: 'john',
+            last_name: 'doe',
+            expiration_date: '11/23',
             expired: false
         });
     expect(parser.parse_card(credit_str_exp)).toEqual(
         {
             card_number: 1234567812345678,
-            first_name: 'test',
-            last_name: 'name',
-            exp_date: '11/18',
+            first_name: 'john',
+            last_name: 'doe',
+            expiration_date: '11/18',
             expired: true
         });
 });
@@ -29,8 +29,8 @@ test('should parse data from id card mag stripe', () => {
     expect(parser.parse_id(credit_str)).toBeNull();
     expect(parser.parse_id(id_str)).toEqual(
         {
-            first_name: 'test',
-            last_name: 'name',
+            first_name: 'john',
+            last_name: 'doe',
             under_21: false,
             under_18: false,
             expired: false,
@@ -40,8 +40,8 @@ test('should parse data from id card mag stripe', () => {
         });
     expect(parser.parse_id(id_str_exp)).toEqual(
         {
-            first_name: 'test',
-            last_name: 'name',
+            first_name: 'john',
+            last_name: 'doe',
             under_21: false,
             under_18: false,
             expired: true,
@@ -63,12 +63,12 @@ test('should return a delta of years', () => {
 
 test('parse string input from card reader', () => {
     expect(parser.parse_string('asdfasdfasdf')).toBeNull();
-    expect(parser.parse_string(id_str)).toEqual([ 'name$test', '2112', '19931223' ]);
+    expect(parser.parse_string(id_str)).toEqual([ 'doe$john', '2112', '19931223' ]);
 });
 
 test('should return formatted object with age, and expired boolean', () => {
-    let arr = [ 'name$test', '2112', '19931223' ];
-    let res = { age: 25, expired: -980 };
+    let arr = [ 'doe$john', '2112', '19931223' ];
+    let res = { age: 25, expired: -979 };
     expect(parser.format_dates(arr)).toEqual(res);
 });
 
