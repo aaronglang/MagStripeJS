@@ -14,7 +14,7 @@ Install package `npm install --save mag-stripe`
 #### Usage
 
 index.js:
-```
+```javascript
 const parser = require('mag-stripe');
 const id_data = parser.test_data.id;
 const credit_card_data = parser.test_data.credit_card;
@@ -36,7 +36,7 @@ function get_credit_card_data (credit_card_data) {
 ---
 
 index.js:
-```
+```javascript
 const parser = require('mag-stripe');
 parser.cli();
 ```

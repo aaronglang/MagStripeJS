@@ -4,32 +4,37 @@ const read_line = require('readline');
 const parse_card = (data) => {
     if(typeof data !== 'string') return null;
     let regexp = /((?<=%b)\d+(?=\^))|((?<=\^)[\w\/\s]+(?=\^))|((?<==)\d{4})/gi;
-    let obj = {};
     let matches = data.match(regexp);
     if(matches && matches.length > 2) {
-        matches.map(x => {
-            if (/[\sa-z]+\/[\sa-z]+/gi.test(x)) {
-                // get name
-                let y = x.trim().split('\/');
-                obj.first_name = y[1].trim().toLowerCase();
-                obj.last_name = y[0].trim().toLowerCase();
-            }
-            else if(/^\d{16,20}$/.test(x)) {
-                // get card number
-                obj.card_number = +x.trim();
-            } else if (/^\d{4}/gi.test(x)) {
-                // check expiration
-                obj.expiration_date = x.trim().match(/\d{2}/g).reverse().join('/');
-                let now = new Date();
-                let expiration_date = new Date(+`20${obj.expiration_date.substr(3,2)}`, +obj.expiration_date.substr(0,2) - 1);
-                let expired = date_diff_days(expiration_date, now);
-                obj.expired = !!(expired > 0);
-            }
-        });
-        return obj;
+        return map_card_data(matches);
+
     } else {
         return null;
     }
+};
+
+const map_card_data = (matches) => {
+    let obj = {};
+    matches.map(x => {
+        if (/[\sa-z]+\/[\sa-z]+/gi.test(x)) {
+            // get name
+            let y = x.trim().split('\/');
+            obj.first_name = y[1].trim().toLowerCase();
+            obj.last_name = y[0].trim().toLowerCase();
+        }
+        else if (/^\d{16,20}$/.test(x)) {
+            // get card number
+            obj.card_number = +x.trim();
+        } else if (/^\d{4}/gi.test(x)) {
+            // check expiration
+            obj.expiration_date = x.trim().match(/\d{2}/g).reverse().join('/');
+            let now = new Date();
+            let expiration_date = new Date(+`20${obj.expiration_date.substr(3, 2)}`, +obj.expiration_date.substr(0, 2) - 1);
+            let expired = date_diff_days(expiration_date, now);
+            obj.expired = !!(expired > 0);
+        }
+    });
+    return obj;
 };
 
 const parse_id = (str) => {

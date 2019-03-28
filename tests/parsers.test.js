@@ -67,12 +67,6 @@ test('parse string input from card reader', () => {
     expect(parser.parse_string(id_str)).toEqual([ 'doe$john', '2112', '19931223' ]);
 });
 
-test('should return formatted object with age, and expired boolean', () => {
-    let arr = [ 'doe$john', '2112', '19931223' ];
-    let res = { age: 25, expired: -979 };
-    expect(parser.format_dates(arr)).toEqual(res);
-});
-
 // FAILED TESTS
 test('parse_id should fail to parse bad input', () => {
     bad_param_arr.forEach(str => {
