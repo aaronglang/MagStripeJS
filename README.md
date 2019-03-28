@@ -1,4 +1,4 @@
-# mag-stripe
+# mag-stripe [![Build Status](https://travis-ci.org/aaronglang/MagStripeJS.svg?branch=master)](https://travis-ci.org/aaronglang/MagStripeJS)
 Magnetic stripe parser for credit-cards and state-issued identification cards
 
 ### Shopping
