@@ -113,8 +113,8 @@ test('should loop through array of matches and return a formatted object', () =>
 
 test('should convert parsed dates to JavaScript date objects', () => {
     expect(parser.format_pdf417_dates(samples.pdf_417_obj)).toEqual({
-            date_of_birth: new Date('1994-09-05T07:00:00.000Z'),
-            expiration_date: new Date('2022-09-05T07:00:00.000Z')
+            date_of_birth: new Date('1994-09-05T00:00:00.00'),
+            expiration_date: new Date('2022-09-05T00:00:00.00')
         });
 });
 
