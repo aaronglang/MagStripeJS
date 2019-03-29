@@ -1,6 +1,6 @@
 {
   "name": "mag-stripe",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Magnetic stripe parser",
   "main": "index.js",
   "scripts": {
