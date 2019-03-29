@@ -97,7 +97,7 @@ function get_credit_card_data () {
 }
 
 function get_pdf417_id_data () {
-    let data = parser.parse_pdf417_id(pdf417_data);
+    let data = parser.parse_pdf417(pdf417_data);
     // do something with ID info
 }
 ```
