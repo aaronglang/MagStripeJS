@@ -6,7 +6,7 @@ const id_str = samples.id;
 const id_str_exp = samples.id_expired;
 const pdf417_id = samples.pdf417_id;
 const pdf417_id_expired = samples.pdf417_id_expired;
-const bad_param_arr = ['%E?;E?', 'asdfasdfasdf12345', '', '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE', 1234567, true, false, '%B1234567812345678^DOE/JOHN ^2311201107631100000000580000', pdf417_id.substr(0,28)];
+const bad_param_arr = ['%E?;E?', 'asdfasdfasdf12345', '', '%CAHUNTINGTN BC^DOE$JOHN$MIDDLE', 1234567, true, false, '%B1234567812345678^DOE/JOHN ^123', pdf417_id.substr(0,28)];
 
 // INTEGRATION TESTS
 test('should parse data from credit card mag stripe', () => {

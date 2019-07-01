@@ -9,7 +9,7 @@ const read_line = require('readline');
  */
 const parse_card = (str) => {
     if(typeof str !== 'string') return null;
-    let regexp = /((?<=%b)\d+(?=\^))|((?<=\^)[\w\/\s]+(?=\^))|((?<==)\d{4})/gi;
+    let regexp = /((?<=%b)\d+(?=\^))|((?<=\^)[\w\/\s]+(?=\^))|((?<=[=\^])\d{4})/gi;
     let matches = str.match(regexp);
     if(matches && matches.length > 2) {
         return map_card_data(matches);
@@ -98,7 +98,7 @@ const cli = () => {
         } else if(/(?<=ansi\s+\d{12}dl\w+dl)[\w\s]+(?=dcf)/gi.test(input)) {
             stdout = parse_pdf417(input);
         }
-        console.log(stdout);
+        if(stdout) console.log(stdout);
     });
 };
 
